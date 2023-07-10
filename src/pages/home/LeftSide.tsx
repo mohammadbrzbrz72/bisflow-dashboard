@@ -1,5 +1,5 @@
 import { SubtractButton, ProductCard } from "@/components";
-import ProductImg from "@/assets/home-images/JAR.png";
+import DB from "@/database";
 
 const styles = {
   main: `
@@ -23,26 +23,17 @@ export default function LeftSide() {
         <SubtractButton />
       </div>
       <div className={styles.cardBox}>
-        <ProductCard
-          title="Lotus Jar"
-          subTitle="Green Fruit Jelly"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500."
-          price={4.0}
-          currency="$"
-          src={ProductImg}
-          alt="product image"
-          onClick={() => {}}
-        />
-        <ProductCard
-          title="Lotus Jar"
-          subTitle="Green Fruit Jelly"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500."
-          price={4.0}
-          currency="$"
-          src={ProductImg}
-          alt="product image"
-          onClick={() => {}}
-        />
+        {DB.get("product").map((data: any) => {
+          return (
+            <ProductCard
+              {...data}
+              key={data.id}
+              onClick={() => {
+                console.log(data.id);
+              }}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { BsBasket3 } from "react-icons/bs";
 
+import Basket from "./Basket";
 import diamondImg from "@/assets/layout-image/diamond.png";
 import { SearchInput } from "@/components";
 
@@ -23,7 +23,6 @@ const styles = {
   searchBox: `
     flex items-center gap-10
     w-full md:w-[352px]
-    
   `,
 };
 
@@ -44,7 +43,7 @@ export default function Header() {
       </div>
       <div className={styles.searchBox}>
         <SearchInput />
-        <BsBasket3 size={35} />
+        <Basket />
       </div>
     </header>
   );

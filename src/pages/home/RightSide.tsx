@@ -1,7 +1,5 @@
 import { FruitCard } from "@/components";
-import appleImg from "@/assets/home-images/apples.png";
-import tripleFruitImg from "@/assets/home-images/triple-fruit.png";
-import grapeImg from "@/assets/home-images/grape.png";
+import DB from "@/database";
 
 const styles = {
   main: `
@@ -24,33 +22,17 @@ export default function RightSide() {
     <section className={styles.main}>
       <h3 className={styles.header}>More Items</h3>
       <div className={styles.cardBox}>
-        <FruitCard
-          title="Apple Fruit"
-          subTitle="Original Taste"
-          price="10.00"
-          currency="$"
-          src={appleImg}
-          alt="apple image"
-          onClick={() => {}}
-        />
-        <FruitCard
-          title="Triple Fruit"
-          subTitle="Original Taste"
-          price="10.00"
-          currency="$"
-          src={tripleFruitImg}
-          alt="triple fruit image"
-          onClick={() => {}}
-        />
-        <FruitCard
-          title="Grape Fruit"
-          subTitle="Original Taste"
-          price="10.00"
-          currency="$"
-          src={grapeImg}
-          alt="grape image"
-          onClick={() => {}}
-        />
+        {DB.get("fruit").map((data: any) => {
+          return (
+            <FruitCard
+              {...data}
+              key={data.id}
+              onClick={() => {
+                console.log(data.id);
+              }}
+            />
+          );
+        })}
       </div>
     </section>
   );

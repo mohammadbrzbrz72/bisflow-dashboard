@@ -1,8 +1,10 @@
 import { css } from "@emotion/react";
 
+import storage from "@/utils/storage";
 import { AddButton } from "..";
 
 interface IProductCard {
+  id: string;
   // image property
   src: string;
   alt: string;
@@ -10,9 +12,9 @@ interface IProductCard {
   title: string;
   subTitle: string;
   description: string;
-  price: number;
+  price: string;
   currency: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const styles = {
@@ -70,6 +72,7 @@ const _css = {
 };
 
 export function ProductCard({
+  id,
   src,
   alt,
   title,
@@ -77,8 +80,8 @@ export function ProductCard({
   description,
   price,
   currency,
-  onClick,
-}: IProductCard) {
+}: // onClick,
+IProductCard) {
   return (
     <div className={styles.root} css={_css.mainHover}>
       <img src={src} alt={alt} />
@@ -94,7 +97,12 @@ export function ProductCard({
           <div className={styles.priceBox}>
             <span>{price}</span> <span>{currency}</span>
           </div>
-          <AddButton color="white" onClick={onClick} />
+          <AddButton
+            color="white"
+            onClick={() => {
+              storage.push("product", id);
+            }}
+          />
         </div>
       </div>
     </div>

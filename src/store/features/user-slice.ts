@@ -1,23 +1,44 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import type { IBasketProduct, IFruitProduct } from "@/database/db";
+import storage from "@/utils/storage";
+import DB from "@/database";
+
+type IData = (IFruitProduct | IFruitProduct)[] | [];
+interface IInitialState {
+  data: IData;
+}
+
+const initialState: IInitialState = {
+  data: [],
+};
+
 export const userSlice = createSlice({
-  name: "user",
-  initialState: {
-    fullname: "jack jackZade",
-    age: 12,
-    gender: "male",
-  },
+  name: "basket",
+  initialState,
   reducers: {
-    // : PayloadAction<number>
-    newUser: (state, { payload }) => {
-      state.fullname = payload.fullname;
-      state.age = payload.age;
-      state.gender = payload.gender;
-    },
-    removeUser(state) {
-      state.fullname = "";
-      state.age = 0;
-      state.gender = "";
+    get(state) {
+      const dataProduct = storage.get("fruit");
+      const dataFruit = storage.get("product");
+      const data = [
+        ...DB.find({
+          ids: dataProduct,
+          category: "product",
+        }),
+        ...DB.find({
+          ids: dataFruit,
+          category: "fruit",
+        }),
+      ];
+      // console.log(
+      //   "hhhhhhhh",
+      //   DB.find({
+      //     ids: dataProduct,
+      //     category: "product",
+      //   })
+      // );
+
+      state.data = data as IData;
     },
   },
 });

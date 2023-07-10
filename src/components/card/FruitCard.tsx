@@ -2,8 +2,10 @@ import { css } from "@emotion/react";
 import clsx from "clsx";
 
 import { ColText, AddButton } from "..";
+import storage from "@/utils/storage";
 
 interface IFruitCard {
+  id: string;
   className?: string;
   // image property
   src: string;
@@ -77,6 +79,7 @@ const _css = {
 };
 
 export function FruitCard({
+  id,
   className,
   src,
   alt,
@@ -106,7 +109,9 @@ export function FruitCard({
                 w-[30px] h-[30px]
               `,
             }}
-            onClick={() => {}}
+            onClick={() => {
+              storage.push("fruit", id);
+            }}
             color="white"
             size={15}
           />
