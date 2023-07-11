@@ -14,7 +14,6 @@ interface IProductCard {
   description: string;
   price: string;
   currency: string;
-  onClick?: () => void;
 }
 
 const styles = {
@@ -80,8 +79,7 @@ export function ProductCard({
   description,
   price,
   currency,
-}: // onClick,
-IProductCard) {
+}: IProductCard) {
   return (
     <div className={styles.root} css={_css.mainHover}>
       <img src={src} alt={alt} />

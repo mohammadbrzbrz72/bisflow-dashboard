@@ -17,14 +17,11 @@ export default {
   },
   remove(key: keyType, id: string) {
     const data = this.get(key) as string[];
-    console.log("last:", data);
 
     const index = data.indexOf(id);
-    console.log("index:", index, id);
     if (index > -1) {
       data.splice(index, 1);
     }
-    console.log("after:", data);
 
     this.set(key, data);
   },

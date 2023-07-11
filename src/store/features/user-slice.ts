@@ -23,20 +23,13 @@ export const userSlice = createSlice({
       const data = [
         ...DB.find({
           ids: dataProduct,
-          category: "product",
+          category: "fruit",
         }),
         ...DB.find({
           ids: dataFruit,
-          category: "fruit",
+          category: "product",
         }),
       ];
-      // console.log(
-      //   "hhhhhhhh",
-      //   DB.find({
-      //     ids: dataProduct,
-      //     category: "product",
-      //   })
-      // );
 
       state.data = data as IData;
     },

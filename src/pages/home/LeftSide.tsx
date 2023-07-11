@@ -24,15 +24,7 @@ export default function LeftSide() {
       </div>
       <div className={styles.cardBox}>
         {DB.get("product").map((data: any) => {
-          return (
-            <ProductCard
-              {...data}
-              key={data.id}
-              onClick={() => {
-                console.log(data.id);
-              }}
-            />
-          );
+          return <ProductCard {...data} key={data.id} />;
         })}
       </div>
     </section>

@@ -23,15 +23,7 @@ export default function RightSide() {
       <h3 className={styles.header}>More Items</h3>
       <div className={styles.cardBox}>
         {DB.get("fruit").map((data: any) => {
-          return (
-            <FruitCard
-              {...data}
-              key={data.id}
-              onClick={() => {
-                console.log(data.id);
-              }}
-            />
-          );
+          return <FruitCard {...data} key={data.id} />;
         })}
       </div>
     </section>

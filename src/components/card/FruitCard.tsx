@@ -15,7 +15,6 @@ interface IFruitCard {
   subTitle: string;
   price: string;
   currency: string;
-  onClick: () => void;
 }
 
 const styles = {
